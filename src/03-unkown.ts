@@ -25,6 +25,7 @@ if (typeof unkownVar === "string") {
   unkownVar.toUpperCase()
 }
 
+//verificar
 // let isNew2: boolean = unkownVar//error
 if (typeof unkownVar === "boolean") {
   let isNew2: boolean = unkownVar
