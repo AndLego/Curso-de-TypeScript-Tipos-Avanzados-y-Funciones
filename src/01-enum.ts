@@ -1,12 +1,12 @@
 //muy util para crear actionTypes en redux o cualquier cosa
 
-enum ROLES {
+export enum ROLES {
   ADMIN = "admin",
   SELLER = "seller",
   CUSTOMER = "customer"
 }
 
-type User = {
+export type User = {
   username: string,
   rol: ROLES
 }
@@ -21,7 +21,7 @@ const diMiRol = (rol: ROLES) => {
 }
 
 //mas sencillo cuando vemos loq ue recomiendo TS "ctrl+space"
-console.log(diMiRol(ROLES.ADMIN));
+//console.log(diMiRol(ROLES.ADMIN));
 
 
 // diferencia con literal types
@@ -46,4 +46,4 @@ const diMiRol2 = (rol: ROLES2) => {
   return `Mi rol es ${rol}`;
 }
 
-console.log(diMiRol2("admin"));
+//console.log(diMiRol2("admin"));

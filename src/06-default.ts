@@ -1,4 +1,9 @@
 //una mejor manera de asignar valores por defecto es la siguiente
+/*
+recordemos que lso valores por defectos son valores que se asignan cuando
+no se envian ningun parametro. Es decir que en vez de retornarnos un undefined
+nos retornará el valor por defecto asigando.
+*/
 export const createProduct = (
   id: string | number,
   isNew: boolean = true,
