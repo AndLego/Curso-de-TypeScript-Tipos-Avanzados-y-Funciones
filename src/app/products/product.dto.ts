@@ -28,3 +28,27 @@ export interface CreateProductDto2 extends Omit<Product, "id" | "createdAt" | "u
  */
 
 type example = Pick<Product, "color" | "description">
+
+/**
+ * el utility type Partial nos permite enviar parametros parciales
+ * sin necesidad de crear una copia de interface añadiendo item? opcional
+ * Lo que hace de background es poner todo con signo de ? automaticamente
+ * si lo usamos de modo type no nos pide de manera obligatoria ningun param
+ * pero al usar interface y extenderlo podemos pedir de manera obligatoria
+ * ciertos parametros
+ */
+
+// export type UpdateProductDto = Partial<Product>
+
+/**
+ * reutilizamos el dto CreateProduct con el fin de omitir ciertos parametros que
+ * ya tenemos de solo tipo lectura y fijos
+ */
+export interface UpdateProductDto extends Partial<CreateProductDto2> { }
+
+/**
+ * el contrario de Partial es Required, el cual hace todos los campos requeridos
+ * incluso aquellos que teniamos como opcionales desde un inicio
+ */
+
+export type example2 = Required<Product>
