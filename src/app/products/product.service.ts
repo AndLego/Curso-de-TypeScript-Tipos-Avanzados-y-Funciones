@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker";
-import { CreateProductDto2, UpdateProductDto } from "./product.dto";
+import { CreateProductDto2, FindProductDto, UpdateProductDto } from "./product.dto";
 import { Product } from "./product.model";
 
 export const products: Product[] = []
@@ -27,6 +27,16 @@ export const addProduct = (data: CreateProductDto2): Product => {
   return newProduct
 }
 
+/**
+ * En este caso hallamos el objeto para actualizar, pasamos los parametros a cambiar,
+ * y retornamos un objeto con la data previa y los nuevos datos.
+ * Estos gracias al utility type Partial
+ * @param id id para identificar el item en cuestion
+ * @param element datos que queremos actualizar
+ * @returns retorna el item actualizado detipo Product
+ *
+ */
+
 export const updateProduct = (id: string | number, element: UpdateProductDto): Product => {
   let index = products.findIndex(item => item.id === id)
   let prevData = products[index]
@@ -37,11 +47,25 @@ export const updateProduct = (id: string | number, element: UpdateProductDto): P
   return products[index]
 }
 
+/**
+ *
+ * @param id id para identificar el item
+ * @returns un array cuyos valores hagn match
+ */
+
+export const findProducts = (dto: FindProductDto): Product[] => {
+  //codigo de filtro, mongo, sql, etc
+  // dto.color= "blue" error porque llegan como params de lectura
+  const property = Object.keys(dto)[0];
+   const value = dto[property as keyof FindProductDto];
+
+//de esta manera se arregla el error de buscar un index sin typo especifico
+  return products.filter(item => item[property as keyof FindProductDto] === value)
+}
+
+
 export const deleteProduct = (id: string) => {
   let index = products.findIndex(item => item.id === id)
   products.splice(index, 1)
 }
 
-export const getProduct = (id: string) => {
-  //code
-}

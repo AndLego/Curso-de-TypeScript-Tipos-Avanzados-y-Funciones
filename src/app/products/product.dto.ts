@@ -52,3 +52,17 @@ export interface UpdateProductDto extends Partial<CreateProductDto2> { }
  */
 
 export type example2 = Required<Product>
+
+/**
+ * Readonly como type pone en todos los parametros el atributo de readonly
+ */
+
+type example3 = Readonly<Product>
+
+//dto para encontrar y filtrar productos
+/**En este caso fucionamos el utility type de readonly con el de partial
+ * con el fin de encontrar por medioa de algunos parametros los items
+ * que hagan match y ademas evitemos que el usuario pueda modificar los items
+ */
+
+export interface FindProductDto extends Readonly<Partial<Product>> { }
