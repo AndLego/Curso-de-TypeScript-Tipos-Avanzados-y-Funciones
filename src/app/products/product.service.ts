@@ -37,7 +37,10 @@ export const addProduct = (data: CreateProductDto2): Product => {
  *
  */
 
-export const updateProduct = (id: string | number, element: UpdateProductDto): Product => {
+//id: Product["id"] accedemos al tipado por indice, es decir dame el valor
+//que tenga la propiiedad id de Product
+//Así, si cambian el tipado de ‘id’ de Product, no habrá problemas (depende de caso).
+export const updateProduct = (id: Product["id"], element: UpdateProductDto): Product => {
   let index = products.findIndex(item => item.id === id)
   let prevData = products[index]
   products[index] = {
@@ -57,9 +60,9 @@ export const findProducts = (dto: FindProductDto): Product[] => {
   //codigo de filtro, mongo, sql, etc
   // dto.color= "blue" error porque llegan como params de lectura
   const property = Object.keys(dto)[0];
-   const value = dto[property as keyof FindProductDto];
+  const value = dto[property as keyof FindProductDto];
 
-//de esta manera se arregla el error de buscar un index sin typo especifico
+  //de esta manera se arregla el error de buscar un index sin typo especifico
   return products.filter(item => item[property as keyof FindProductDto] === value)
 }
 

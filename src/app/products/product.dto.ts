@@ -63,6 +63,13 @@ type example3 = Readonly<Product>
 /**En este caso fucionamos el utility type de readonly con el de partial
  * con el fin de encontrar por medioa de algunos parametros los items
  * que hagan match y ademas evitemos que el usuario pueda modificar los items
+ *
+ * En resumen este dto genera uan copia de Product, omitiendo el param tags,
+ * volviendolo de tipo readonlyarray, para despues hacer un Partial recibiendo
+ * algunos params y finalmente que todos sus valores sean de tipo readonly
  */
 
-export interface FindProductDto extends Readonly<Partial<Product>> { }
+export interface FindProductDto extends Readonly<Partial<Omit<Product, "tags">>> {
+  //el primer readonly evita que se reasigne, el Read..Arr evita que se mute
+  // readonly tags: ReadonlyArray<string>
+}

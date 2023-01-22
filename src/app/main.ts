@@ -25,7 +25,7 @@ const rta = updateProduct(product.id, {
 console.log("updated", rta);
 
 const filterProducts = findProducts({
-  isNew: true
+  color: "blue"
 })
 
 console.log("filtered", filterProducts);
